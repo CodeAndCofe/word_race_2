@@ -19,6 +19,7 @@ function	text_swaper(i)
 }
 
 function text_swaper_r(i) {
+
     let previous = document.getElementById(i);
     let current = document.getElementById(i - 1);
     let c = previous.innerHTML;
@@ -44,18 +45,21 @@ function	game_start(k)
 		document.getElementById(index).style.color = "gold";
 		index++;
 	}
-	else if (k == "Backspace" && index > 1)
+	else if (k == "Backspace")
 	{
-		if (keys > 0)
-			keys--;
-		index --;
-		text_swaper_r(index);
-		document.getElementById(index).style.color = "grey";
+		if (index > 1)
+		{
+			if (keys > 0)
+				keys--;
+			index --;
+			text_swaper_r(index);
+			document.getElementById(index).style.color = "grey";
+		}
 	}
 	else
 	{
 		text_swaper(index);
-		document.getElementById(index).style.color = "red";
+		document.getElementById(index - 1).style.color = "red";
 		index++;
 	}
 }
