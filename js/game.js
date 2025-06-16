@@ -16,7 +16,6 @@ function	text_swaper(i)
 	
 	previous.innerHTML = current.innerHTML;
 	current.innerHTML = c;
-	current.style.color = "gold";
 }
 
 function text_swaper_r(i) {
@@ -34,21 +33,29 @@ function	game_start(k)
 	let text = text_generated;
 	if (is_alphabet(text[index]) != 1 && text[index] != ' ' && k != "Backspace")
 	{
-		text_swaper(index)
+		text_swaper(index);
+		document.getElementById(index).style.color = "gold";
 		index++;
 	}
 	if (k == text[index])
 	{
+		keys++;
 		text_swaper(index);
-		// document.getElementById(index).style.color = "gold";
+		document.getElementById(index).style.color = "gold";
 		index++;
 	}
 	else if (k == "Backspace" && index > 1)
 	{
-
+		if (keys > 0)
+			keys--;
 		index --;
 		text_swaper_r(index);
 		document.getElementById(index).style.color = "grey";
-
+	}
+	else
+	{
+		text_swaper(index);
+		document.getElementById(index).style.color = "red";
+		index++;
 	}
 }

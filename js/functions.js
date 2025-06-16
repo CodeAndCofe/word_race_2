@@ -9,7 +9,20 @@ async function reload_wait() {
     loader.classList.add("hide");
 }
 
-function	start_counting(count_seconds)
+function	gameover()
+{
+	if (count_seconds <= 0)
+	{
+		last.classList.remove("hide");
+		kps.innerHTML = keys;
+		gameOver=true;
+		button.addEventListener("click", ()=>
+		{
+			window.location.reload();
+		});
+	}
+}
+function	start_counting()
 {
 	if (!interval)
 	{
@@ -20,11 +33,13 @@ function	start_counting(count_seconds)
 			{
 				clearInterval(interval);
 				interval = null;
-				// count_seconds = 50;
+				count_seconds = 0;
+				seconds.innerHTML = count_seconds;
+				gameover();
 			}
 			seconds.innerHTML = count_seconds;
 		}, 1000);
-	}
+	}	
 }
 
 function text_show(text)
